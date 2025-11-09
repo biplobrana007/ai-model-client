@@ -1,9 +1,13 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import Logo from "./Logo";
 import Container from "./Container";
+import { AuthContext } from "../Provider/AuthContext";
+import { auth } from "../firebase/firebase.config";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, setUser, logOut } = use(AuthContext);
   const links = (
     <>
       <NavLink
@@ -26,6 +30,17 @@ const Navbar = () => {
       </NavLink>
     </>
   );
+
+  const handleSignout = () => {
+    logOut(auth)
+      .then(() => {
+        setUser(null);
+        toast.success("Logout Succesfully---");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <nav className="bg-base-100 shadow-sm">
       <Container>
@@ -77,7 +92,7 @@ const Navbar = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                    src={user && user.photoURL}
                   />
                 </div>
               </div>
@@ -86,8 +101,8 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
                 <div className="py-5 text-center font-semibold rounded-box shadow mb-5">
-                  <h2>DisplayName</h2>
-                  <h2>Email</h2>
+                  <h2 className="capitalize">{user && user.displayName}</h2>
+                  <h2>{user && user.email}</h2>
                 </div>
                 <li>
                   <Link>Purchased</Link>
@@ -97,12 +112,22 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-            <Link
-              to="/auth/login"
-              className=" font-semiboldr hover:bg-linear-[25deg,#FD1D1D,#FCB045] bg-clip-text hover:text-transparent"
-            >
-              Login
-            </Link>
+            {user ? (
+              <Link
+                onClick={handleSignout}
+                to="/"
+                className=" font-semiboldr hover:bg-linear-[25deg,#FD1D1D,#FCB045] bg-clip-text hover:text-transparent"
+              >
+                Logout
+              </Link>
+            ) : (
+              <Link
+                to="/auth/login"
+                className=" font-semiboldr hover:bg-linear-[25deg,#FD1D1D,#FCB045] bg-clip-text hover:text-transparent"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </Container>
