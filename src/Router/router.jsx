@@ -20,6 +20,7 @@ const router = createBrowserRouter([
       {
         path: "/all-models",
         Component: AllModels,
+        loader: () => fetch("http://localhost:3000/models"),
       },
       {
         path: "/add-model",
