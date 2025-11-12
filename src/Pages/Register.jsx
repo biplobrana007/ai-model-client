@@ -8,6 +8,7 @@ import { FaEyeSlash } from "react-icons/fa6";
 import { AuthContext } from "../Provider/AuthContext";
 import Container from "../Components/Container";
 import toast from "react-hot-toast";
+import GoogleSignIn from "../Components/GoogleSignIn";
 
 const SignUp = () => {
   //   const navigate = useNavigate();
@@ -115,9 +116,9 @@ const SignUp = () => {
             </form>
           </div>
         </div>
-        {/* <div className="mt-10">
+        <div className="mt-10">
           <GoogleSignIn></GoogleSignIn>
-        </div> */}
+        </div>
       </div>
     </Container>
   );
