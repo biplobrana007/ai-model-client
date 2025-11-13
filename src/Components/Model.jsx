@@ -22,7 +22,7 @@ const Model = ({ model }) => {
           </div>
           <p className="mt-5 text-gray-500">{model.description}</p>
           <div className="flex justify-center items-center gap-1 py-3">
-            <Link>View Details</Link>
+            <Link to={`/model-details/${model._id}`}>View Details</Link>
             <FaArrowRightLong></FaArrowRightLong>
           </div>
         </div>
