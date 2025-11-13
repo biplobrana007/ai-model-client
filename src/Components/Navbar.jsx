@@ -108,7 +108,7 @@ const Navbar = () => {
                   <Link>Purchased</Link>
                 </li>
                 <li>
-                  <Link>Models</Link>
+                  <Link to={`/my-models`}>My Models</Link>
                 </li>
               </ul>
             </div>
@@ -129,7 +129,7 @@ const Navbar = () => {
               </Link>
             )}
           </div>
-        </div>
+        </div> 
       </Container>
     </nav>
   );

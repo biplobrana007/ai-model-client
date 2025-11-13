@@ -9,6 +9,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import ModelDetails from "../Pages/ModelDetails";
 import UpdateModel from "../Pages/UpdateModel";
+import MyModels from "../Pages/MyModels";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         element: <UpdateModel></UpdateModel>,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/models/${params.id}`),
+      },
+      {
+        path: "/my-models",
+        element: <MyModels></MyModels>,
       },
     ],
   },
