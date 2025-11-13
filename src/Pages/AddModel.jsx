@@ -3,9 +3,11 @@ import { TbContainerOff } from "react-icons/tb";
 import Container from "../Components/Container";
 import { AuthContext } from "../Provider/AuthContext";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const AddModel = () => {
   const { user } = use(AuthContext);
+  const navigation = useNavigate();
   const handleAddModel = (e) => {
     e.preventDefault();
     const modeldata = {
@@ -28,7 +30,10 @@ const AddModel = () => {
       body: JSON.stringify(modeldata),
     })
       .then((res) => res.json())
-      .then(() => toast.success("Model added successfully....", { position: "top-right" }))
+      .then(
+        () => navigation("/all-models"),
+        toast.success("Model added successfully....", { position: "top-right" })
+      )
       .catch((err) => console.log(err));
   };
   return (

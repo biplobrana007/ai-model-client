@@ -1,11 +1,12 @@
 import React from "react";
 import Container from "../Components/Container";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 
 const UpdateModel = () => {
   const data = useLoaderData();
   const model = data.result;
+  const navigation = useNavigate();
 
   const handleUpdateModel = (e) => {
     e.preventDefault();
@@ -27,6 +28,7 @@ const UpdateModel = () => {
     })
       .then((res) => res.json())
       .then(
+        navigation(-1),
         toast.success("Model updated successfully....", {
           position: "top-right",
         })

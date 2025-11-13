@@ -11,6 +11,7 @@ const Model = ({ model }) => {
       ></div>
       <div className="p-2">
         <div>
+          <div>
           <h2 className="text-xl font-semibold">{model.name}</h2>
           <div className="">
             <h4 className="border w-fit px-4 rounded-full bg-cyan-200 text-cyan-900 mt-2">
@@ -21,6 +22,7 @@ const Model = ({ model }) => {
             </h4>
           </div>
           <p className="mt-5 text-gray-500">{model.description}</p>
+          </div>
           <div className="flex justify-center">
             <div className="flex w-fit  justify-center items-center px-3 py-1 gap-3 mt-4   rounded-full bg-linear-[25deg,#FD1D1D,#FCB045] text-white">
               <Link to={`/model-details/${model._id}`}>View Details</Link>
