@@ -1,10 +1,44 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import Container from "../Components/Container";
+import Swal from "sweetalert2";
 
 const ModelDetails = () => {
   const data = useLoaderData();
   const model = data.result;
+
+  const navigation = useNavigate();
+
+  const handleDelet = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/models/${model._id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then(
+            () => navigation("/all-models"),
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            })
+          )
+          .catch((err) => console.log(err));
+      }
+    });
+  };
 
   return (
     <div>
@@ -35,10 +69,12 @@ const ModelDetails = () => {
             </p>
           </div>
           <div className="flex gap-5 mt-5">
-            <Link to={`/update-model/${model._id}`} className="btn">
+            <Link to={`/update-model/${model._id}`} className="btn bg-linear-[25deg,#FD1D1D,#FCB045] text-white border-none">
               Update
             </Link>
-            <Link className="btn">Delete</Link>
+            <button onClick={handleDelet} className="btn">
+              Delete
+            </button>
           </div>
         </div>
       </Container>

@@ -13,17 +13,19 @@ const Model = ({ model }) => {
         <div>
           <h2 className="text-xl font-semibold">{model.name}</h2>
           <div className="">
-            <h4 className="border w-fit px-4 py-1 rounded-full bg-cyan-200 text-cyan-900 mt-2">
+            <h4 className="border w-fit px-4 rounded-full bg-cyan-200 text-cyan-900 mt-2">
               {model.framework}
             </h4>
-            <h4 className="border w-fit px-4 py-1 rounded-full bg-amber-200 text-amber-900 mt-2">
+            <h4 className="border w-fit px-4 rounded-full bg-amber-200 text-amber-900 mt-2">
               {model.useCase}
             </h4>
           </div>
           <p className="mt-5 text-gray-500">{model.description}</p>
-          <div className="flex justify-center items-center gap-1 py-3">
-            <Link to={`/model-details/${model._id}`}>View Details</Link>
-            <FaArrowRightLong></FaArrowRightLong>
+          <div className="flex justify-center">
+            <div className="flex w-fit  justify-center items-center px-3 py-1 gap-3 mt-4   rounded-full bg-linear-[25deg,#FD1D1D,#FCB045] text-white">
+              <Link to={`/model-details/${model._id}`}>View Details</Link>
+              <FaArrowRightLong></FaArrowRightLong>
+            </div>
           </div>
         </div>
       </div>
