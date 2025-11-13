@@ -5,7 +5,6 @@ import Model from "../Components/Model";
 
 const AllModels = () => {
   const models = useLoaderData();
-  console.log(models);
   return (
     <div className="py-10 bg-amber-50">
       <Container className="lg:w-10/12 xl:w-8/12">

@@ -8,6 +8,7 @@ import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import ModelDetails from "../Pages/ModelDetails";
+import UpdateModel from "../Pages/UpdateModel";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,14 @@ const router = createBrowserRouter([
       {
         path: "/model-details/:id",
         element: <ModelDetails></ModelDetails>,
-        loader: ({params}) => fetch(`http://localhost:3000/models/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/models/${params.id}`),
+      },
+      {
+        path: "/update-model/:id",
+        element: <UpdateModel></UpdateModel>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/models/${params.id}`),
       },
     ],
   },

@@ -5,7 +5,7 @@ import Container from "../Components/Container";
 const ModelDetails = () => {
   const data = useLoaderData();
   const model = data.result;
-  console.log(model);
+
   return (
     <div>
       <Container>
@@ -35,7 +35,9 @@ const ModelDetails = () => {
             </p>
           </div>
           <div className="flex gap-5 mt-5">
-            <Link className="btn">Update</Link>
+            <Link to={`/update-model/${model._id}`} className="btn">
+              Update
+            </Link>
             <Link className="btn">Delete</Link>
           </div>
         </div>

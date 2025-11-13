@@ -1,12 +1,13 @@
-import React, { use } from "react";
-import { TbContainerOff } from "react-icons/tb";
+import React from "react";
 import Container from "../Components/Container";
-import { AuthContext } from "../Provider/AuthContext";
+import { useLoaderData } from "react-router";
 import toast from "react-hot-toast";
 
-const AddModel = () => {
-  const { user } = use(AuthContext);
-  const handleAddModel = (e) => {
+const UpdateModel = () => {
+  const data = useLoaderData();
+  const model = data.result;
+
+  const handleUpdateModel = (e) => {
     e.preventDefault();
     const modeldata = {
       name: e.target.name.value,
@@ -15,20 +16,21 @@ const AddModel = () => {
       dataset: e.target.dataset.value,
       description: e.target.description.value,
       image: e.target.photoURL.value,
-      createdBy: user.email,
-      createdAt: new Date(),
-      purchased: 0,
     };
 
-    fetch("http://localhost:3000/models", {
-      method: "POST",
+    fetch(`http://localhost:3000/models/${model._id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(modeldata),
     })
       .then((res) => res.json())
-      .then(() => toast.success("Model added successfully....", { position: "top-right" }))
+      .then(
+        toast.success("Model updated successfully....", {
+          position: "top-right",
+        })
+      )
       .catch((err) => console.log(err));
   };
   return (
@@ -36,14 +38,15 @@ const AddModel = () => {
       <Container>
         <div className=" flex flex-col items-center justify-center min-h-screen">
           <h2 className="text-4xl text-secondary font-bold nuito-font mb-10">
-            Add Model
+            Update Model
           </h2>
           <div className="card bg-base-200 w-full max-w-sm shrink-0 ">
             <div className="card-body">
-              <form onSubmit={handleAddModel} className="fieldset">
+              <form onSubmit={handleUpdateModel} className="fieldset">
                 <label className="label ">Name</label>
                 <input
                   name="name"
+                  defaultValue={model.name}
                   type="text"
                   className="input w-full"
                   placeholder="Name"
@@ -51,7 +54,7 @@ const AddModel = () => {
                 <label className="label ">Framework</label>
                 <select
                   name="framework"
-                  defaultValue="Pick a browser"
+                  defaultValue={model.framework}
                   className="w-full select"
                 >
                   <option disabled={true}>Framework</option>
@@ -62,6 +65,7 @@ const AddModel = () => {
                 <input
                   name="useCase"
                   type="text"
+                  defaultValue={model.useCase}
                   className="input w-full"
                   placeholder="Use Case"
                 />
@@ -69,6 +73,7 @@ const AddModel = () => {
                 <input
                   name="dataset"
                   type="text"
+                  defaultValue={model.dataset}
                   className="input w-full"
                   placeholder="Dataset"
                 />
@@ -76,6 +81,7 @@ const AddModel = () => {
                 <textarea
                   name="description"
                   type="textarea"
+                  defaultValue={model.description}
                   className="textarea w-full  py-2"
                   placeholder="Description"
                 ></textarea>
@@ -83,6 +89,7 @@ const AddModel = () => {
                 <input
                   name="photoURL"
                   type="text"
+                  defaultValue={model.image}
                   className="input w-full"
                   placeholder="photoURL"
                 />
@@ -90,7 +97,7 @@ const AddModel = () => {
                   type="submit"
                   className="btn bg-primary text-white mt-4 hover:bg-secondary border-none"
                 >
-                  Add Model
+                  Update
                 </button>
               </form>
             </div>
@@ -101,4 +108,4 @@ const AddModel = () => {
   );
 };
 
-export default AddModel;
+export default UpdateModel;
