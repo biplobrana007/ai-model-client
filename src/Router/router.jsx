@@ -10,6 +10,7 @@ import Register from "../Pages/Register";
 import ModelDetails from "../Pages/ModelDetails";
 import UpdateModel from "../Pages/UpdateModel";
 import MyModels from "../Pages/MyModels";
+import PurchasedModels from "../Pages/PurchasedModels";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/my-models",
         element: <MyModels></MyModels>,
+      },
+      {
+        path: "/my-purchased-models",
+        element: <PurchasedModels></PurchasedModels>,
       },
     ],
   },
