@@ -1,5 +1,5 @@
-import React, { use } from "react";
-import { Link, NavLink } from "react-router";
+import React, { use, useEffect, useState } from "react";
+import { Link, NavLink, useNavigation } from "react-router";
 import Logo from "./Logo";
 import Container from "./Container";
 import { AuthContext } from "../Provider/AuthContext";
@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, setUser, logOut } = use(AuthContext);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const navigation = useNavigation();
   const links = (
     <>
       <NavLink
@@ -35,12 +37,24 @@ const Navbar = () => {
     logOut(auth)
       .then(() => {
         setUser(null);
+        navigation("/");
         toast.success("Logout Succesfully---");
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
   return (
     <nav className="bg-base-100 shadow-sm">
       <Container>
@@ -84,7 +98,7 @@ const Navbar = () => {
           </div>
           <div className="navbar-end gap-4">
             {user && (
-              <div className="dropdown dropdown-end">
+              <div className="dropdown dropdown-end ">
                 <div
                   tabIndex={0}
                   role="button"
@@ -99,11 +113,19 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex="-1"
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
                 >
                   <div className="py-5 text-center font-semibold rounded-box shadow mb-5">
                     <h2 className="capitalize">{user && user.displayName}</h2>
                     <h2>{user && user.email}</h2>
+                  </div>
+                  <div className="navbar">
+                    <input
+                      onChange={(e) => handleTheme(e.target.checked)}
+                      type="checkbox"
+                      defaultChecked={localStorage.getItem("theme") === "dark"}
+                      className="toggle"
+                    />
                   </div>
                   <li>
                     <Link to={`/my-purchased-models`}>My Purchased Models</Link>
