@@ -13,18 +13,19 @@ import MyModels from "../Pages/MyModels";
 import PurchasedModels from "../Pages/PurchasedModels";
 import PrivateRouter from "./PrivateRouter";
 import Loading from "../Components/Loading";
+import Error from "../Components/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
+    errorElement: <Error></Error>,
     children: [
       {
         index: true,
         Component: Home,
         loader: () => fetch("http://localhost:3000/latest-models"),
-        hydrateFallbackElement: <Loading></Loading>
-
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/all-models",
@@ -70,6 +71,7 @@ const router = createBrowserRouter([
   {
     path: "/auth",
     Component: AuthLayout,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/auth/login",
