@@ -27,7 +27,7 @@ import { AuthContext } from "./AuthContext";
     };
   
     const signInWithGoogle = () => {
-      // setAuthLoading(true)
+      setAuthLoading(true)
       const provider = new GoogleAuthProvider();
       return signInWithPopup(auth, provider);
     };

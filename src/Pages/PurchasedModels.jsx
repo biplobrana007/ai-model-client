@@ -3,11 +3,12 @@ import { AuthContext } from "../Provider/AuthContext";
 import Container from "../Components/Container";
 import Model from "../Components/Model";
 import PurchasedModel from "../Components/PurchasedModel";
+import Loading from "../Components/Loading";
 
 const PurchasedModels = () => {
   const [models, setModels] = useState([]);
 
-  const { user } = use(AuthContext);
+  const { user, authLoading } = use(AuthContext);
   useEffect(() => {
     fetch(
       `http://localhost:3000/my-purchased-models?email=${user && user.email}`
@@ -23,14 +24,26 @@ const PurchasedModels = () => {
             My Purchased Models
           </h2>
         </div>
-        {models.length ? (
-          <div className="grid max-sm:grid-cols-1 max-lg:grid-cols-2 grid-cols-3 gap-5">
-            {models.map((model) => (
-              <PurchasedModel key={model._id} model={model}></PurchasedModel>
-            ))}
-          </div>
+
+        {authLoading ? (
+          <Loading></Loading>
         ) : (
-          <p className="text-center text-black text-2xl">No Model Purchased</p>
+          <>
+            {models.length ? (
+              <div className="grid max-sm:grid-cols-1 max-lg:grid-cols-2 grid-cols-3 gap-5">
+                {models.map((model) => (
+                  <PurchasedModel
+                    key={model._id}
+                    model={model}
+                  ></PurchasedModel>
+                ))}
+              </div>
+            ) : (
+              <p className="text-center text-black text-2xl">
+                No Model Purchased
+              </p>
+            )}
+          </>
         )}
       </Container>
     </div>

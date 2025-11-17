@@ -12,6 +12,7 @@ import UpdateModel from "../Pages/UpdateModel";
 import MyModels from "../Pages/MyModels";
 import PurchasedModels from "../Pages/PurchasedModels";
 import PrivateRouter from "./PrivateRouter";
+import Loading from "../Components/Loading";
 
 const router = createBrowserRouter([
   {
@@ -22,11 +23,14 @@ const router = createBrowserRouter([
         index: true,
         Component: Home,
         loader: () => fetch("http://localhost:3000/latest-models"),
+        hydrateFallbackElement: <Loading></Loading>
+
       },
       {
         path: "/all-models",
         Component: AllModels,
         loader: () => fetch("http://localhost:3000/models"),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/add-model",
@@ -51,6 +55,7 @@ const router = createBrowserRouter([
         element: <UpdateModel></UpdateModel>,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/models/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/my-models",

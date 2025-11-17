@@ -6,9 +6,10 @@ import { AuthContext } from "../Provider/AuthContext";
 import toast from "react-hot-toast";
 
 const ModelDetails = () => {
-  const { user } = use(AuthContext);
+  const { user} = use(AuthContext);
   const data = useLoaderData();
   const model = data.result;
+
 
   const [purchasedCount, setPurchasedCount] = useState(model.purchased);
 
@@ -70,6 +71,8 @@ const ModelDetails = () => {
         toast.success("Purchased successfully......", { position: "top-right" })
       );
   };
+
+
 
   return (
     <div>

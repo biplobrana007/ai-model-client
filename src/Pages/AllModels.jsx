@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import Container from "../Components/Container";
 import Model from "../Components/Model";
+import Loading from "../Components/Loading";
 
 const AllModels = () => {
   const allmodel = useLoaderData();
@@ -36,7 +37,6 @@ const AllModels = () => {
     }
     return models;
   };
-
 
   return (
     <div className=" min-h-screen py-10 bg-amber-50">
