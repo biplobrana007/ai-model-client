@@ -10,7 +10,7 @@ const PurchasedModel = ({ model }) => {
       <div className="p-2">
         <div>
           <div>
-          <h2 className="text-xl font-semibold">{model.name}</h2>
+          <h2 className="text-xl font-semibold text-black">{model.name}</h2>
           <div className="">
             <h4 className="border w-fit px-4 rounded-full bg-cyan-200 text-cyan-900 mt-2">
               {model.framework}
@@ -21,7 +21,7 @@ const PurchasedModel = ({ model }) => {
           </div>
           <p className="mt-5 text-gray-500">{model.description}</p>
           <div className="mt-2">
-            <p>CreatedBy: <span className="text-gray-600">{model.createdBy}</span></p>
+            <p className="text-black">CreatedBy: <span className="text-gray-600">{model.createdBy}</span></p>
           </div>
           </div>
         </div>

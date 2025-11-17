@@ -12,7 +12,6 @@ const ModelDetails = () => {
 
   const [purchasedCount, setPurchasedCount] = useState(model.purchased);
 
-
   const navigation = useNavigate();
 
   const handleDelete = () => {
@@ -75,7 +74,7 @@ const ModelDetails = () => {
   return (
     <div>
       <Container>
-        <div className=" my-10 rounded-2xl p-5 border border-gray-200 shadow">
+        <div className=" my-10 rounded-2xl p-5 border  border-gray-200 shadow">
           <div
             style={{ background: `url(${model.image})` }}
             className="h-100  rounded-2xl bg-no-repeat! shadow bg-center! bg-cover! max-w-100"
@@ -94,14 +93,15 @@ const ModelDetails = () => {
           <p>{model.description}</p>
 
           <div>
-            <p className="text-gray-500 mt-5">
-              <span className="text-black">CreatedBy:</span> {model.createdBy}
+            <p className=" mt-5">
+              <span className="">CreatedBy:</span>
+              <span className="text-gray-500"> {model.createdBy}</span>
             </p>
           </div>
           <div className="border w-fit px-5 rounded-full mt-2 py-2 border-amber-400">
-            <p className="text-gray-500 font-semibold">
-              <span className="text-black mr-2">Purchased:</span>{" "}
-              {purchasedCount}
+            <p className=" font-semibold">
+              <span className=" mr-2 ">Purchased:</span>{" "}
+              <span className="text-gray-500">{purchasedCount}</span>
             </p>
           </div>
           <div className="flex gap-5 mt-5">

@@ -42,7 +42,7 @@ const AllModels = () => {
     <div className=" min-h-screen py-10 bg-amber-50">
       <Container className="lg:w-10/12 xl:w-8/12">
         <div>
-          <h2 className="font-semibold text-center text-3xl mb-5">
+          <h2 className="text-black font-semibold text-center text-3xl mb-5">
             All Models
           </h2>
         </div>

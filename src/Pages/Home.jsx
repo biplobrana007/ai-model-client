@@ -2,6 +2,7 @@ import React from "react";
 import Container from "../Components/Container";
 import LatestModels from "../Components/LatestModels";
 import { useLoaderData } from "react-router";
+import AboutAiModels from "../Components/AboutAiModels";
 
 const Home = () => {
   const data = useLoaderData();
@@ -10,6 +11,7 @@ const Home = () => {
   return (
     <div>
       <LatestModels latestModels={latestModels}></LatestModels>
+      <AboutAiModels></AboutAiModels>
     </div>
   );
 };

@@ -106,7 +106,7 @@ const Navbar = () => {
                     <h2>{user && user.email}</h2>
                   </div>
                   <li>
-                    <Link to={`/my-purchased-models`}>Purchased</Link>
+                    <Link to={`/my-purchased-models`}>My Purchased Models</Link>
                   </li>
                   <li>
                     <Link to={`/my-models`}>My Models</Link>

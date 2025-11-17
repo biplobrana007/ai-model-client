@@ -7,7 +7,7 @@ const LatestModels = ({latestModels}) => {
     <div className="py-15  bg-amber-50">
       <Container className="lg:w-10/12 xl:w-8/12">
         <div>
-          <h2 className="font-semibold text-center text-3xl mb-5">
+          <h2 className="text-black font-semibold text-center text-3xl mb-5">
             Latest Models
           </h2>
         </div>
