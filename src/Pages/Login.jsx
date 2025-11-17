@@ -7,8 +7,8 @@ import toast from "react-hot-toast";
 import GoogleSignIn from "../Components/GoogleSignIn";
 
 const Login = () => {
-  const { signInUser, user } = use(AuthContext);
-  console.log(user);
+  const { signInUser} = use(AuthContext);
+
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {

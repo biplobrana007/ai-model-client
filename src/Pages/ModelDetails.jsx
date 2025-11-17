@@ -78,13 +78,11 @@ const ModelDetails = () => {
         <div className=" my-10 rounded-2xl p-5 border border-gray-200 shadow">
           <div
             style={{ background: `url(${model.image})` }}
-            className="h-100  rounded-2xl bg-no-repeat! shadow bg-center! bg-cover! w-100"
+            className="h-100  rounded-2xl bg-no-repeat! shadow bg-center! bg-cover! max-w-100"
           ></div>
           <div className="border-b border-gray-200 my-5"></div>
           <h2 className="text-2xl font-semibold">{model.name}</h2>
-          <div>
-            <h2></h2>
-          </div>
+
           <div className="flex gap-5 max-md:flex-col my-5">
             <p className="border  w-fit px-3 rounded-full bg-blue-200 text-blue-600">
               {model.framework}
@@ -100,7 +98,7 @@ const ModelDetails = () => {
               <span className="text-black">CreatedBy:</span> {model.createdBy}
             </p>
           </div>
-          <div className="border w-fit px-5 rounded-full mt-2 py-2">
+          <div className="border w-fit px-5 rounded-full mt-2 py-2 border-amber-400">
             <p className="text-gray-500 font-semibold">
               <span className="text-black mr-2">Purchased:</span>{" "}
               {purchasedCount}

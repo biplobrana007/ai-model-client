@@ -11,7 +11,7 @@ const MyModels = () => {
       .then((res) => res.json())
       .then((data) => setModels(data));
   }, [user]);
-  console.log(models);
+
   return (
     <div className="py-10 bg-amber-50">
       <Container className="lg:w-10/12 xl:w-8/12">

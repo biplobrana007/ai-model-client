@@ -36,7 +36,7 @@ const UpdateModel = () => {
       .catch((err) => console.log(err));
   };
   return (
-    <div>
+    <div className="">
       <Container>
         <div className=" flex flex-col items-center justify-center min-h-screen">
           <h2 className="text-4xl text-secondary font-bold nuito-font mb-10">
