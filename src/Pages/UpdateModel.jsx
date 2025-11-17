@@ -62,6 +62,9 @@ const UpdateModel = () => {
                   <option disabled={true}>Framework</option>
                   <option>TensorFlow</option>
                   <option>PyTorch</option>
+                  <option>LangChain</option>
+                  <option>Keras</option>
+                  <option>Scikit-Learn</option>
                 </select>
                 <label className="label ">Use Case</label>
                 <input
