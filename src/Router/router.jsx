@@ -11,6 +11,7 @@ import ModelDetails from "../Pages/ModelDetails";
 import UpdateModel from "../Pages/UpdateModel";
 import MyModels from "../Pages/MyModels";
 import PurchasedModels from "../Pages/PurchasedModels";
+import PrivateRouter from "./PrivateRouter";
 
 const router = createBrowserRouter([
   {
@@ -29,11 +30,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-model",
-        Component: AddModel,
+        element: (
+          <PrivateRouter>
+            <AddModel></AddModel>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/model-details/:id",
-        element: <ModelDetails></ModelDetails>,
+        element: (
+          <PrivateRouter>
+            <ModelDetails></ModelDetails>
+          </PrivateRouter>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/models/${params.id}`),
       },

@@ -1,15 +1,19 @@
 import React, { use, useState } from "react";
 import Container from "../Components/Container";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthContext";
 import toast from "react-hot-toast";
 import GoogleSignIn from "../Components/GoogleSignIn";
 
 const Login = () => {
-  const { signInUser} = use(AuthContext);
+  const { signInUser } = use(AuthContext);
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigation = useNavigate();
+  const location = useLocation();
+
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,8 +24,7 @@ const Login = () => {
       .then(() => {
         // Signed in
         toast.success("Login successfully......", { position: "top-right" });
-        // navigation(`${location.state ? location.state : "/"}`);
-        // ...
+        navigation(`${location.state ? location.state : "/"}`);
       })
       .catch(() => {
         toast.success("Invalid credential!", { position: "top-right" });
@@ -70,7 +73,7 @@ const Login = () => {
                 No account?{" "}
                 <Link
                   className="font-bold text-[15px]  text-secondary hover:underline ml-1"
-                  to="/auth/register"
+                  to="/auth/register" state={location.state}
                 >
                   Register
                 </Link>

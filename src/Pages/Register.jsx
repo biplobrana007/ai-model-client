@@ -1,6 +1,6 @@
 import React, { use, useState } from "react";
 
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { updateProfile } from "firebase/auth";
 
 import { FaEye } from "react-icons/fa";
@@ -14,6 +14,10 @@ const SignUp = () => {
   //   const navigate = useNavigate();
   const { createUser } = use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigation = useNavigate();
+  const location = useLocation();
+
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -36,10 +40,10 @@ const SignUp = () => {
       .then((user) => {
         updateProfile(user.user, { displayName, photoURL })
           .then(() => {
-            // navigate("/");
             toast.success("SignUp successfully......", {
               position: "top-right",
             });
+            navigation(`${location.state ? location.state : "/"}`);
           })
           .catch((err) => {
             console.log(err);

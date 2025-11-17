@@ -83,35 +83,37 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1 gap-4">{links}</ul>
           </div>
           <div className="navbar-end gap-4">
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src={user && user.photoURL}
-                  />
+            {user && (
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      src={user && user.photoURL}
+                    />
+                  </div>
                 </div>
+                <ul
+                  tabIndex="-1"
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                >
+                  <div className="py-5 text-center font-semibold rounded-box shadow mb-5">
+                    <h2 className="capitalize">{user && user.displayName}</h2>
+                    <h2>{user && user.email}</h2>
+                  </div>
+                  <li>
+                    <Link to={`/my-purchased-models`}>Purchased</Link>
+                  </li>
+                  <li>
+                    <Link to={`/my-models`}>My Models</Link>
+                  </li>
+                </ul>
               </div>
-              <ul
-                tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-              >
-                <div className="py-5 text-center font-semibold rounded-box shadow mb-5">
-                  <h2 className="capitalize">{user && user.displayName}</h2>
-                  <h2>{user && user.email}</h2>
-                </div>
-                <li>
-                  <Link to={`/my-purchased-models`}>Purchased</Link>
-                </li>
-                <li>
-                  <Link to={`/my-models`}>My Models</Link>
-                </li>
-              </ul>
-            </div>
+            )}
             {user ? (
               <Link
                 onClick={handleSignout}
