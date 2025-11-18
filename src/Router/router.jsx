@@ -24,13 +24,14 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch("http://localhost:3000/latest-models"),
+        loader: () =>
+          fetch("https://ai-model-server-pi.vercel.app/latest-models"),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/all-models",
         Component: AllModels,
-        loader: () => fetch("http://localhost:3000/models"),
+        loader: () => fetch("https://ai-model-server-pi.vercel.app/models"),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -48,23 +49,24 @@ const router = createBrowserRouter([
             <ModelDetails></ModelDetails>
           </PrivateRouter>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/models/${params.id}`),
+        loader: () => fetch("https://ai-model-server-pi.vercel.app/models"),
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/update-model/:id",
         element: <UpdateModel></UpdateModel>,
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/models/${params.id}`),
+        loader: () => fetch("https://ai-model-server-pi.vercel.app/models"),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/my-models",
         element: <MyModels></MyModels>,
+        hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/my-purchased-models",
         element: <PurchasedModels></PurchasedModels>,
+        hydrateFallbackElement: <Loading></Loading>,
       },
     ],
   },

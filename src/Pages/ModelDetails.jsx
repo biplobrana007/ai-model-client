@@ -1,15 +1,15 @@
 import React, { use, useState } from "react";
-import { Link, useLoaderData, useNavigate } from "react-router";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router";
 import Container from "../Components/Container";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthContext";
 import toast from "react-hot-toast";
 
 const ModelDetails = () => {
-  const { user} = use(AuthContext);
-  const data = useLoaderData();
-  const model = data.result;
-
+  const { user } = use(AuthContext);
+  const { id } = useParams();
+  const allmodel = useLoaderData();
+  const model = allmodel.find((model) => model._id === id);
 
   const [purchasedCount, setPurchasedCount] = useState(model.purchased);
 
@@ -26,7 +26,7 @@ const ModelDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/models/${model._id}`, {
+        fetch(`https://ai-model-server-pi.vercel.app/models/${model._id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -58,21 +58,22 @@ const ModelDetails = () => {
       image: model.image,
       purchasedBy: user && user.email,
     };
-    fetch(`http://localhost:3000/purchased-models/${model._id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(finalModel),
-    })
+    fetch(
+      `https://ai-model-server-pi.vercel.app/purchased-models/${model._id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(finalModel),
+      }
+    )
       .then((res) => res.json())
       .then(
         setPurchasedCount(purchasedCount + 1),
         toast.success("Purchased successfully......", { position: "top-right" })
       );
   };
-
-
 
   return (
     <div>

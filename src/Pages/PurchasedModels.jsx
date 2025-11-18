@@ -11,7 +11,9 @@ const PurchasedModels = () => {
   const { user, authLoading } = use(AuthContext);
   useEffect(() => {
     fetch(
-      `http://localhost:3000/my-purchased-models?email=${user && user.email}`
+      `https://ai-model-server-pi.vercel.app/my-purchased-models?email=${
+        user && user.email
+      }`
     )
       .then((res) => res.json())
       .then((data) => setModels(data));

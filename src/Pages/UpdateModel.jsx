@@ -1,12 +1,13 @@
 import React from "react";
 import Container from "../Components/Container";
-import { useLoaderData, useNavigate } from "react-router";
+import { useLoaderData, useNavigate, useParams } from "react-router";
 import toast from "react-hot-toast";
 
 const UpdateModel = () => {
-  const data = useLoaderData();
-  const model = data.result;
   const navigation = useNavigate();
+  const { id } = useParams();
+  const allmodel = useLoaderData();
+  const model = allmodel.find((model) => model._id === id);
 
   const handleUpdateModel = (e) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ const UpdateModel = () => {
       image: e.target.photoURL.value,
     };
 
-    fetch(`http://localhost:3000/models/${model._id}`, {
+    fetch(`https://ai-model-server-pi.vercel.app/models/${model._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
